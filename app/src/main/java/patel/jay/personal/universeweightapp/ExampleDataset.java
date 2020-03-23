@@ -39,17 +39,17 @@ public class ExampleDataset {
         mars.setHeadTitle("Mars");
         dataset.add(mars);
 
-        CardData saturn = new CardData();
-        saturn.setMainBackgroundResource(R.drawable.saturn);
-        saturn.setHeadBackgroundResource(R.drawable.saturn);
-        saturn.setHeadTitle("Saturn");
-        dataset.add(saturn);
-
         CardData jupiter = new CardData();
         jupiter.setMainBackgroundResource(R.drawable.jupiter);
         jupiter.setHeadBackgroundResource(R.drawable.jupiter);
         jupiter.setHeadTitle("Jupiter");
         dataset.add(jupiter);
+
+        CardData saturn = new CardData();
+        saturn.setMainBackgroundResource(R.drawable.saturn);
+        saturn.setHeadBackgroundResource(R.drawable.saturn);
+        saturn.setHeadTitle("Saturn");
+        dataset.add(saturn);
 
         CardData neptune = new CardData();
         neptune.setMainBackgroundResource(R.drawable.neptune);
