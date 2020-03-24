@@ -10,6 +10,7 @@ import android.transition.Fade;
 import android.transition.Slide;
 import android.util.Log;
 import android.view.Window;
+
 import java.util.Random;
 
 public class WeightCalculator extends AppCompatActivity {
@@ -22,6 +23,7 @@ public class WeightCalculator extends AppCompatActivity {
 
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         setContentView(R.layout.activity_weight_calculator);
+
         Intent intent = getIntent();
         planet = intent.getStringExtra("planetName");
         Random r = new Random();
@@ -52,7 +54,7 @@ public class WeightCalculator extends AppCompatActivity {
                 Log.d("", "");
 
         }
-        mainLayout = findViewById(R.id.mainConstraintLayout);
+        mainLayout = findViewById(R.id.mainConstaintLayout);
 
         backgroundSwitcher(planet);
     }
