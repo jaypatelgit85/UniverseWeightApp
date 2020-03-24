@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">UniverseWeightApp</string>
     <string name="enter_your_weight_here">Enter Your Weight Here</string>
+
+    <string-array name="list">
+        <item>Pounds (Lb)</item>
+        <item>Kilograms (Kg)</item>
+    </string-array>
 </resources>
+

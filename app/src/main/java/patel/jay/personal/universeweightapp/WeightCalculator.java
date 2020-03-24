@@ -9,20 +9,44 @@ import android.transition.Explode;
 import android.transition.Fade;
 import android.transition.Slide;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 import java.util.Random;
 
-public class WeightCalculator extends AppCompatActivity {
+public class WeightCalculator extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     ConstraintLayout mainLayout;
     String planet;
     double planetWeightFactor = 1.0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         setContentView(R.layout.activity_weight_calculator);
+
+        Spinner myspinner = (Spinner) findViewById(R.id.spinner);
+
+        // Create an ArrayAdapter instance
+        // This attaches your string list to the ArrayAdapter
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(this,
+                R.array.list, android.R.layout.simple_spinner_item);
+
+        // Set the default Dropdown layout for the Spinner
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+        // Attach the Adapter to the Spinner
+        myspinner.setAdapter(adapter);
+
+        // Select the default first selection - this usually prevents a select event on startup
+        myspinner.setSelection(0, false);
+
+        // Attach our Activity class as the 'listener' for this object's events
+        myspinner.setOnItemSelectedListener(this);
 
         Intent intent = getIntent();
         planet = intent.getStringExtra("planetName");
@@ -105,4 +129,35 @@ public class WeightCalculator extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
+        if (parent.getId() == R.id.spinner) {
+
+            // Item at position selected (starting at 0)
+            Log.d("LOG", "Item " + position + " was selected");
+
+            // Get the string that was selected using this...
+            String what = parent.getItemAtPosition(position).toString();
+
+            Log.d("LOG", "Choice is " + what);
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+
+    public void calculateWeight(View view) {
+        EditText userInput = findViewById(R.id.userInput);
+
+        if (userInput.getText().toString().isEmpty() || userInput.getText().toString().matches(".")) {
+            userInput.setError("Invalid Input, Please Try Again");
+        } else {
+            double actualWeight = Double.valueOf(userInput.getText().toString());
+            double CalculatedWeight = actualWeight * planetWeightFactor;
+        }
+
+
+    }
 }
