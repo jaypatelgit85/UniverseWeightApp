@@ -75,9 +75,11 @@ public class MainActivity extends Activity {
                 head.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(final View v) {
-                        Log.d("please", cardData.getHeadTitle());//gives name of the head clicked
+
+                        String clickedPlanet = cardData.getHeadTitle();
                         ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this);
                         Intent intent = new Intent(MainActivity.this.getBaseContext(), WeightCalculator.class);
+                        intent.putExtra("planetName", clickedPlanet);
                         startActivity(intent, activityOptions.toBundle());
                     }
                 });
