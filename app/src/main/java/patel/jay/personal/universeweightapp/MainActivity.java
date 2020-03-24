@@ -6,10 +6,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +47,7 @@ public class MainActivity extends Activity {
         // Create adapter for pager
         ECPagerViewAdapter adapter = new ECPagerViewAdapter(this, new ExampleDataset().getDataset()) {
             @Override
-            public void instantiateCard(LayoutInflater inflaterService, ViewGroup head, ListView list, final ECCardData data) {
+            public void instantiateCard(LayoutInflater inflaterService, final ViewGroup head, final ListView list, final ECCardData data) {
                 final CardData cardData = (CardData) data;
 
                 // Create adapter for list inside a card and set adapter to card content
@@ -72,7 +75,10 @@ public class MainActivity extends Activity {
                 head.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(final View v) {
-                        Toast.makeText(MainActivity.this, "ABcd", Toast.LENGTH_SHORT).show();
+                        Log.d("please", cardData.getHeadTitle());//gives name of the head clicked
+                        ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this);
+                        Intent intent = new Intent(MainActivity.this.getBaseContext(), WeightCalculator.class);
+                        startActivity(intent, activityOptions.toBundle());
                     }
                 });
             }
