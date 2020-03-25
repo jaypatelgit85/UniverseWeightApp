@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">UniverseWeightApp</string>
+    <string name="app_name">Find Your Weight</string>
     <string name="enter_your_weight_here">Enter Your Weight Here</string>
 
     <string-array name="list">

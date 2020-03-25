@@ -1,42 +1,25 @@
 package patel.jay.personal.universeweightapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.ramotion.expandingcollection.ECBackgroundSwitcherView;
-import com.ramotion.expandingcollection.ECCardData;
-import com.ramotion.expandingcollection.ECPagerView;
-import com.ramotion.expandingcollection.ECPagerViewAdapter;
-
-import java.util.ArrayList;
-
-import patel.jay.personal.universeweightapp.pojo.CardData;
-import patel.jay.personal.universeweightapp.view.ItemsCountView;
 
 @SuppressLint("SetTextI18n")
 public class MainActivity extends Activity {
 
-    private ECPagerView ecPagerView;
+    private PagerView ecPagerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,15 +28,17 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         // Create adapter for pager
-        ECPagerViewAdapter adapter = new ECPagerViewAdapter(this, new ExampleDataset().getDataset()) {
+        PagerViewAdapter adapter = new PagerViewAdapter(this, new Dataset().getDataset()) {
+
+
             @Override
-            public void instantiateCard(LayoutInflater inflaterService, final ViewGroup head, final ListView list, final ECCardData data) {
+            public void instantiateCard(LayoutInflater inflaterService, final ViewGroup head, final ListView list, final CardData data) {
                 final CardData cardData = (CardData) data;
 
                 // Create adapter for list inside a card and set adapter to card content
-                CommentArrayAdapter commentArrayAdapter = new CommentArrayAdapter(getApplicationContext(), cardData.getListItems());
-                list.setAdapter(commentArrayAdapter);
-                //list.setDivider(getResources().getDrawable(R.drawable.list_divider));
+                ArrayAdapter arrayAdapter = new ArrayAdapter(getApplicationContext(), cardData.getListItems());
+                list.setAdapter(arrayAdapter);
+                list.setDivider(getResources().getDrawable(R.drawable.list_divider));
                 list.setDividerHeight((int) pxFromDp(getApplicationContext(), 0.5f));
                 list.setSelector(R.color.transparent);
                 list.setBackgroundColor(Color.WHITE);
@@ -86,13 +71,13 @@ public class MainActivity extends Activity {
             }
         };
 
-        ecPagerView = (ECPagerView) findViewById(R.id.ec_pager_element);
+        ecPagerView = (PagerView) findViewById(R.id.ec_pager_element);
 
         ecPagerView.setPagerViewAdapter(adapter);
-        ecPagerView.setBackgroundSwitcherView((ECBackgroundSwitcherView) findViewById(R.id.ec_bg_switcher_element));
+        ecPagerView.setBackgroundSwitcherView((BackgroundImageSwitcher) findViewById(R.id.ec_bg_switcher_element));
 
         final ItemsCountView itemsCountView = (ItemsCountView) findViewById(R.id.items_count_view);
-        ecPagerView.setOnCardSelectedListener(new ECPagerView.OnCardSelectedListener() {
+        ecPagerView.setOnCardSelectedListener(new PagerView.OnCardSelectedListener() {
             @Override
             public void cardSelected(int newPosition, int oldPosition, int totalElements) {
                 itemsCountView.update(newPosition, oldPosition, totalElements);

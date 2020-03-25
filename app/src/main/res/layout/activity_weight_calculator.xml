@@ -14,11 +14,13 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="72dp"
         android:layout_marginEnd="3dp"
+        android:layout_marginBottom="135dp"
         android:ems="10"
         android:hint="@string/enter_your_weight_here"
         android:inputType="numberDecimal"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/planetWeightName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/spinner"
         app:layout_constraintHorizontal_bias="0.151"
@@ -50,4 +52,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+    <patel.jay.personal.universeweightapp.TypeWriter
+        android:id="@+id/planetWeightName"
+        android:layout_width="320dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="291dp"
+        android:gravity="center"
+        android:textAppearance="@style/cardHeadTitle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userInput" />
 </androidx.constraintlayout.widget.ConstraintLayout>

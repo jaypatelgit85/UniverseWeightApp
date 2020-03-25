@@ -1,18 +1,16 @@
 package patel.jay.personal.universeweightapp;
 
 
-import com.ramotion.expandingcollection.ECCardData;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import patel.jay.personal.universeweightapp.pojo.CardData;
 
-public class ExampleDataset {
+public class Dataset {
 
-    private List<ECCardData> dataset;
+    private List<CardData> dataset;
 
-    public ExampleDataset() {
+    public Dataset() {
         dataset = new ArrayList<>(8);
 
         CardData mercury = new CardData();
@@ -65,7 +63,7 @@ public class ExampleDataset {
 
     }
 
-    public List<ECCardData> getDataset() {
+    public List<CardData> getDataset() {
         Collections.addAll(dataset);
         return dataset;
     }

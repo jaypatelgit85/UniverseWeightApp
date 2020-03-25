@@ -3,6 +3,8 @@ package patel.jay.personal.universeweightapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.transition.Explode;
@@ -11,16 +13,18 @@ import android.transition.Slide;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-
 import java.util.Random;
 
 public class WeightCalculator extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     ConstraintLayout mainLayout;
     String planet;
+    int pos = 0;
     double planetWeightFactor = 1.0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,13 +137,8 @@ public class WeightCalculator extends AppCompatActivity implements AdapterView.O
     public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
         if (parent.getId() == R.id.spinner) {
 
-            // Item at position selected (starting at 0)
-            Log.d("LOG", "Item " + position + " was selected");
-
             // Get the string that was selected using this...
-            String what = parent.getItemAtPosition(position).toString();
-
-            Log.d("LOG", "Choice is " + what);
+            pos = position;
         }
     }
 
@@ -148,14 +147,28 @@ public class WeightCalculator extends AppCompatActivity implements AdapterView.O
 
     }
 
+    @SuppressLint("DefaultLocale")
     public void calculateWeight(View view) {
+        Button button = findViewById(R.id.calculate);
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(button.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
+        String what;
+        if (pos == 0) {
+            what = "Pounds (Lb)";
+        } else {
+            what = "Kilograms (Kg)";
+        }
         EditText userInput = findViewById(R.id.userInput);
 
-        if (userInput.getText().toString().isEmpty() || userInput.getText().toString().matches(".")) {
+        if (userInput.getText().toString().isEmpty() || userInput.getText().toString().equals(".")) {
             userInput.setError("Invalid Input, Please Try Again");
         } else {
             double actualWeight = Double.valueOf(userInput.getText().toString());
-            double CalculatedWeight = actualWeight * planetWeightFactor;
+            double calculatedWeight = actualWeight * planetWeightFactor;
+
+            TypeWriter planetNameWeight = findViewById(R.id.planetWeightName);
+            planetNameWeight.setCharacterDelay(100);
+            planetNameWeight.animateText("Your weight on " + planet + " will be : " + String.format("%.2f", calculatedWeight) + " " + what);
         }
 
 

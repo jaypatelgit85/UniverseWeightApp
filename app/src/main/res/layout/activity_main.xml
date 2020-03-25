@@ -7,13 +7,13 @@
     android:clipChildren="false"
     tools:context=".MainActivity">
 
-    <com.ramotion.expandingcollection.ECBackgroundSwitcherView
+    <patel.jay.personal.universeweightapp.BackgroundImageSwitcher
         android:id="@+id/ec_bg_switcher_element"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:foreground="@drawable/background_gradient"/>
 
-    <patel.jay.personal.universeweightapp.view.ItemsCountView
+    <patel.jay.personal.universeweightapp.ItemsCountView
 
         android:id="@+id/items_count_view"
         android:layout_width="wrap_content"
@@ -23,7 +23,7 @@
         android:clipChildren="false"
         android:orientation="horizontal" />
 
-    <com.ramotion.expandingcollection.ECPagerView
+    <patel.jay.personal.universeweightapp.PagerView
         android:id="@+id/ec_pager_element"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -1,4 +1,4 @@
-package patel.jay.personal.universeweightapp.view;
+package patel.jay.personal.universeweightapp;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
-import patel.jay.personal.universeweightapp.R;
 
 public class ItemsCountView extends LinearLayout {
 
