@@ -4,11 +4,9 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Point;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.MotionEvent;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
@@ -18,9 +16,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import java.util.List;
 
-/**
- * Root PagerView element. Wraps all logic, animations and behavior.
- */
 public class PagerView extends FrameLayout implements ViewPager.OnPageChangeListener {
     private Pager pager;
     private BackgroundImageSwitcher attachedImageSwitcher;
@@ -235,36 +230,11 @@ public class PagerView extends FrameLayout implements ViewPager.OnPageChangeList
         return cardHeaderExpandedHeight;
     }
 
-    /**
-     * Start expand animation for currently active card.
-     *
-     * @return true if animation started
-     */
-    public boolean expand() {
-        return pager.expand();
-    }
-
-    /**
-     * Start collapse animation for currently active card.
-     *
-     * @return true if animation started
-     */
     public boolean collapse() {
         return pager.collapse();
     }
 
-    /**
-     * Toggle state of currently active card - collapse if card is expanded and otherwise
-     *
-     * @return true if animation started
-     */
-    public boolean toggle() {
-        return pager.toggle();
-    }
 
-    /**
-     * Listener will be notified when pager select a new card
-     */
     public interface OnCardSelectedListener {
         void cardSelected(int newPosition, int oldPosition, int totalElements);
     }
